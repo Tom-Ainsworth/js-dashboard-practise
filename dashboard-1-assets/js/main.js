@@ -26,6 +26,44 @@ const defaultOptions = {
 	},
 };
 // Create sparklines bar chart
+const sparklineBarOptions = {
+	series: [
+		{
+			data: [12, 24, 12, 35, 64, 32, 33, 15],
+		},
+	],
+	...defaultOptions,
+	chart: {
+		type: 'bar',
+		width: 80,
+		height: 35,
+		sparkline: {
+			enabled: true,
+		},
+	},
+	colors: [colorPrimary],
+	plotOptions: {
+		bar: {
+			columnWidth: '80%',
+		},
+	},
+	labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+	xaxis: {
+		crosshairs: {
+			width: 0,
+		},
+	},
+	tooltip: {
+		enabled: false,
+	},
+};
+
+const sparklineBarChart = new ApexCharts(
+	document.querySelector('#sparklinesBar'),
+	sparklineBarOptions
+);
+
+sparklineBarChart.render();
 
 // Create radial bar chart
 
