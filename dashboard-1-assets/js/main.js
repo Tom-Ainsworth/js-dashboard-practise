@@ -1,10 +1,9 @@
 // Get CSS Variables
 
-const getColorVariable = (color) => {
-	return getComputedStyle(document.documentElement)
+const getColorVariable = (color) =>
+	getComputedStyle(document.documentElement)
 		.getPropertyValue(`--color-${color}`)
 		.trim();
-};
 
 const colorPrimary = getColorVariable('primary');
 const colorAccent = getColorVariable('accent');
@@ -17,6 +16,9 @@ const defaultOptions = {
 	chart: {
 		height: 136,
 		width: '100%',
+		toolbar: {
+			show: false,
+		},
 	},
 	tooltip: {
 		enabled: true,
@@ -25,11 +27,28 @@ const defaultOptions = {
 			fontFamily: 'Sora',
 		},
 	},
+	legend: {
+		show: false,
+	},
+	selection: {
+		enabled: false,
+	},
 	states: {
 		hover: {
 			filter: {
 				type: 'none',
 			},
+		},
+	},
+	fill: {
+		type: 'gradient',
+		gradient: {
+			shade: 'dark',
+			type: 'vertical',
+			shadeIntensity: 0.2,
+			gradientToColors: undefined,
+			inverseColors: true,
+			stops: [0, 50, 100],
 		},
 	},
 };
@@ -55,6 +74,7 @@ const sparklineBarOptions = {
 			columnWidth: '80%',
 		},
 	},
+
 	labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 	xaxis: {
 		crosshairs: {
@@ -102,7 +122,7 @@ const radialBarOptions = {
 				show: false,
 			},
 			track: {
-				background: '#363636',
+				background: colorDefault,
 			},
 		},
 	},
@@ -114,8 +134,69 @@ const radialBarChart = new ApexCharts(
 );
 
 radialBarChart.render();
+
 // Create bar Chart
 
+const barChartOptions = {
+	series: [
+		{
+			name: 'Y1',
+			data: [12, 24, 12, 35, 64, 32, 33, 15],
+		},
+		{
+			name: 'Y2',
+			data: [19, 21, 22, 49, 80, 11, 23, 77],
+		},
+	],
+	...defaultOptions,
+	chart: {
+		...defaultOptions,
+		type: 'bar',
+	},
+	colors: [colorPrimary, colorDefault],
+	plotOptions: {
+		bar: {
+			columnWidth: '50%',
+		},
+	},
+	dataLabels: {
+		enabled: false,
+	},
+	grid: {
+		strokeDashArray: 3,
+		borderColor: 'rgba(255, 255, 255, 0.05)',
+		padding: { left: 20, right: 20, top: -16, bottom: -12 },
+	},
+	labels: [1, 2, 3, 4, 5, 6, 7, 8],
+	xaxis: {
+		categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+		labels: {
+			style: {
+				fontFamily: 'Sora',
+				colors: colorLabel,
+			},
+		},
+		axisBorder: {
+			show: false,
+		},
+		axisTicks: {
+			show: false,
+		},
+		crosshairs: {
+			show: false,
+		},
+	},
+	yaxis: {
+		show: false,
+	},
+};
+
+const barChart = new ApexCharts(
+	document.querySelector('#barChart'),
+	barChartOptions
+);
+
+barChart.render();
 // Create gauge Chart
 
 // Create area chart
