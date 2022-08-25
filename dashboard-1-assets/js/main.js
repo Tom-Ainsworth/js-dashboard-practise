@@ -1,11 +1,16 @@
 // Get CSS Variables
-const colorPrimary = getComputedStyle(document.documentElement)
-	.getPropertyValue('--color-primary')
-	.trim();
 
-const colorAccent = getComputedStyle(document.documentElement)
-	.getPropertyValue('--color-accent')
-	.trim();
+const getColorVariable = (color) => {
+	return getComputedStyle(document.documentElement)
+		.getPropertyValue(`--color-${color}`)
+		.trim();
+};
+
+const colorPrimary = getColorVariable('primary');
+const colorAccent = getColorVariable('accent');
+const colorDefault = getColorVariable('default');
+const colorCard = getColorVariable('card');
+const colorLabel = getColorVariable('label');
 
 // Declare Default Chart Options
 
