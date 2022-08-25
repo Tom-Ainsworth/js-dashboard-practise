@@ -13,7 +13,18 @@ const colorCard = getColorVariable('card');
 const colorLabel = getColorVariable('label');
 
 // Declare Default Chart Options
-
+const defaultOptions = {
+	chart: {
+		height: 136,
+		width: '100%',
+	},
+	tooltip: {
+		enabled: true,
+		style: {
+			fontFamily: 'Sora',
+		},
+	},
+};
 // Create sparklines bar chart
 
 // Create radial bar chart
