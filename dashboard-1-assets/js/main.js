@@ -20,8 +20,16 @@ const defaultOptions = {
 	},
 	tooltip: {
 		enabled: true,
+		fillSeriesColor: false,
 		style: {
 			fontFamily: 'Sora',
+		},
+	},
+	states: {
+		hover: {
+			filter: {
+				type: 'none',
+			},
 		},
 	},
 };
@@ -56,6 +64,9 @@ const sparklineBarOptions = {
 	tooltip: {
 		enabled: false,
 	},
+	selection: {
+		enabled: true,
+	},
 };
 
 const sparklineBarChart = new ApexCharts(
@@ -66,7 +77,43 @@ const sparklineBarChart = new ApexCharts(
 sparklineBarChart.render();
 
 // Create radial bar chart
+const radialBarOptions = {
+	...defaultOptions,
+	chart: {
+		...defaultOptions.chart,
+		type: 'radialBar',
+	},
+	series: [33],
+	labels: ['Usage'],
+	colors: [colorPrimary],
+	grid: {
+		show: false,
+		padding: { left: -30, right: -30, top: -15, bottom: -15 },
+	},
+	stroke: {
+		lineCap: 'round',
+	},
+	plotOptions: {
+		radialBar: {
+			hollow: {
+				size: '60%',
+			},
+			dataLabels: {
+				show: false,
+			},
+			track: {
+				background: '#363636',
+			},
+		},
+	},
+};
 
+const radialBarChart = new ApexCharts(
+	document.querySelector('#radialBarChart'),
+	radialBarOptions
+);
+
+radialBarChart.render();
 // Create bar Chart
 
 // Create gauge Chart
